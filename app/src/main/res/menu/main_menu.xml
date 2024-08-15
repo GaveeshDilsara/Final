@@ -1,0 +1,59 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Home"/>
+
+        <item
+            android:id="@+id/history"
+            android:icon="@drawable/baseline_history_24"
+            android:title="History"/>
+
+        <item
+            android:id="@+id/contactlist"
+            android:icon="@drawable/baseline_contacts_24"
+            android:title="Contact List"/>
+
+        <item
+            android:id="@+id/self_defence"
+            android:icon="@drawable/baseline_education_24"
+            android:title="Education"/>
+
+    </group>
+
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/about"
+                    android:icon="@drawable/baseline_account_circle_24"
+                    android:title="About"/>
+
+                <item
+                    android:id="@+id/login"
+                    android:icon="@drawable/baseline_login_24"
+                    android:title="Log In"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Communication">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/share"
+                    android:icon="@drawable/baseline_share_24"
+                    android:title="Share"/>
+
+                <item
+                    android:id="@+id/rate_us"
+                    android:icon="@drawable/baseline_sentiment_satisfied_alt_24"
+                    android:title="Rate_Us"/>
+            </group>
+        </menu>
+    </item>
+
+</menu>

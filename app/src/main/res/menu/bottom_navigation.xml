@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/call24"
+        android:icon="@drawable/baseline_call_24"
+        android:title="24/7 Help Line"/>
+
+    <item
+        android:id="@+id/sos"
+        android:icon="@drawable/baseline_sos_24"
+        android:title="SOS"/>
+
+    <item
+        android:id="@+id/recording"
+        android:icon="@drawable/baseline_emergency_recording_24"
+        android:title="Recording"/>
+
+    <item
+        android:id="@+id/add_friends"
+        android:icon="@drawable/baseline_add_call_24"
+        android:title="Add Contacts"/>
+</menu>

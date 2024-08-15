@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="toolbar" type="id" />
+    <item name="contactsave" type="id" />
+    <item name="contact1" type="id" />
+    <item name="contact2" type="id" />
+    <item name="contact3" type="id" />
+    <item name="sosTextView" type="id" />
+</resources>

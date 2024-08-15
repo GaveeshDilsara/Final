@@ -1,0 +1,67 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Name and Contact 1 -->
+    <EditText
+        android:layout_marginTop="16dp"
+        android:id="@+id/name1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name 1" />
+
+    <EditText
+        android:id="@+id/contact1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contact 1"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_marginTop="8dp" />
+
+    <!-- Name and Contact 2 -->
+    <EditText
+        android:layout_marginTop="16dp"
+        android:id="@+id/name2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name 2" />
+
+    <EditText
+        android:id="@+id/contact2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contact 2"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_marginTop="8dp" />
+
+    <!-- Name and Contact 3 -->
+    <EditText
+        android:layout_marginTop="16dp"
+        android:id="@+id/name3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name 3" />
+
+    <EditText
+        android:id="@+id/contact3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contact 3"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_marginTop="8dp" />
+
+    <!-- Save Button -->
+    <Button
+        android:layout_marginTop="24dp"
+        android:id="@+id/contactsave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Contacts" />
+
+</LinearLayout>

@@ -1,0 +1,15 @@
+<!-- list_item_separator.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/separatorTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Separator"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+</LinearLayout>

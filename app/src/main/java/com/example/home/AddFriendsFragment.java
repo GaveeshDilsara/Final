@@ -38,11 +38,14 @@ public class AddFriendsFragment extends Fragment implements FragmentUpdateListen
         contactsList = new ArrayList<>();
         sharedPreferences = requireActivity().getSharedPreferences("EmergencyContacts", getContext().MODE_PRIVATE);
 
+        // Check if the CALL_PHONE permission is granted
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // Request the permission if not granted
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);
+        } else {
+            // If permission is already granted, load contacts
+            loadContacts();
         }
-
-        loadContacts();
 
         adapter = new ContactAdapterFriends(requireContext(), contactsList);
         contactsListView.setAdapter(adapter);
@@ -97,6 +100,9 @@ public class AddFriendsFragment extends Fragment implements FragmentUpdateListen
         if (requestCode == REQUEST_CALL_PHONE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(requireContext(), "Call permission granted", Toast.LENGTH_SHORT).show();
+                // Permission granted, proceed with loading contacts
+                loadContacts();
+                adapter.notifyDataSetChanged();
             } else {
                 Toast.makeText(requireContext(), "Call permission denied", Toast.LENGTH_SHORT).show();
             }

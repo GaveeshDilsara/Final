@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 1;
     private static final int REQUEST_SMS_PERMISSION = 2;
     private static final int REQUEST_LOCATION_PERMISSION = 3;
-    private static final int REQUEST_CHECK_SETTINGS = 4;
+    private static final int REQUEST_CALL_PHONE = 4;
+    private static final int REQUEST_CHECK_SETTINGS = 5;
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                             if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                             } else {
+                                // Navigate to VideoRecordingActivity if needed
                                 Intent intent = new Intent(MainActivity.this, VideoRecordingActivity.class);
                                 startActivity(intent);
                             }
@@ -135,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                                 sendEmergencyMessageWithLocation();
                             }
 
-                            // Load SOSFragment instead of starting it as an activity
                             selectedFragment = new SOSFragment();
                             break;
 
@@ -235,10 +236,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent(MainActivity.this, VideoRecordingActivity.class);
-                startActivity(intent);
+                Toast.makeText(this, "Camera permission granted", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
             }
@@ -258,11 +259,24 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
             }
+        } else if (requestCode == REQUEST_CALL_PHONE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                navigateToAddFriendsFragment();
+            } else {
+                Toast.makeText(this, "Call permission denied", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
+    public void navigateToAddFriendsFragment() {
+        AddFriendsFragment addFriendsFragment = new AddFriendsFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment, addFriendsFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
     private void sendEmergencyMessageWithLocation() {
-        // Create location request
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(10000);  // Update location every 10 seconds
@@ -276,7 +290,6 @@ public class MainActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                        // Location settings are satisfied, request location updates
                         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
                     }
                 })
@@ -284,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e instanceof com.google.android.gms.common.api.ResolvableApiException) {
-                            // Location settings are not satisfied, but this can be fixed by showing the user a dialog
                             try {
                                 com.google.android.gms.common.api.ResolvableApiException resolvable = (com.google.android.gms.common.api.ResolvableApiException) e;
                                 resolvable.startResolutionForResult(MainActivity.this, REQUEST_CHECK_SETTINGS);
@@ -303,10 +315,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (resultCode == RESULT_OK) {
-                // User agreed to make required location settings changes
                 sendEmergencyMessageWithLocation();
             } else {
-                // User did not agree to make required location settings changes
                 sendEmergencyMessage("Emergency! Please help me immediately. Location unavailable.");
             }
         }

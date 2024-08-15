@@ -1,15 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#774421"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <TextView
+    <fragment
+        android:id="@+id/google_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btn_hospitals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home...."
-        android:layout_centerInParent="true"
-        android:textSize="24sp"
-        android:textColor="#ffffff"/>
+        android:text="Hospitals"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"/>
 
+    <Button
+        android:id="@+id/btn_police"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Police Stations"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/btn_other_places"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pharmacies"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"/>
+
+    <!-- Round Button for Current Location -->
+    <Button
+        android:id="@+id/btn_my_location"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/round_button_background"
+        android:elevation="8dp"
+        android:text="📍"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 </RelativeLayout>
